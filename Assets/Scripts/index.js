@@ -1,8 +1,10 @@
+// Fetch seeds data
 async function fetchSeeds() {
     const response = await fetch('Data/seeds.json');
     return await response.json();
 }
 
+// Render seed cards
 function renderSeedCards(seeds) {
     const container = document.querySelector('.row.g-3');
     container.innerHTML = '';
@@ -11,9 +13,9 @@ function renderSeedCards(seeds) {
         card.classList.add('col-md-4');
         card.innerHTML = `
             <div class="card" style="border-radius: 10px; overflow: hidden;">
-                <img src="${seed.imgs[1].path}" class="card-img-top" alt="${seed.imgs[1].name}">
+                <img src="${seed.imgs[1].path}" class="card-img-top" alt="${seed.imgs[1].name}" style="width: 100%; height: 100px; object-fit: cover;">
                 <div class="d-flex align-items-center p-3">
-                    <img src="${seed.imgs[0].path}" class="rounded me-3" alt="${seed.imgs[0].name}">
+                    <img src="${seed.imgs[0].path}" class="rounded me-3" alt="${seed.imgs[0].name}" style="width: 50px; height: 50px; object-fit: cover;">
                     <div class="d-flex justify-content-between align-items-center w-100">
                         <div>
                             <h6 class="mb-0">${seed.name}</h6>
@@ -30,10 +32,12 @@ function renderSeedCards(seeds) {
     });
 }
 
+// Search seeds by name
 function searchSeeds(seeds, query) {
     return seeds.filter(seed => seed.name.toLowerCase().includes(query.toLowerCase()));
 }
 
+// Filter seeds
 function filterSeeds(seeds) {
     const filters = {};
     document.querySelectorAll('.form-check-input:checked').forEach(input => {
@@ -60,6 +64,7 @@ function filterSeeds(seeds) {
     });
 }
 
+// View seed details
 function viewSeedDetails(seedName) {
     fetchSeeds().then(seeds => {
         const seed = seeds.find(s => s.name === seedName);
@@ -87,6 +92,7 @@ function viewSeedDetails(seedName) {
     });
 }
 
+// Event listeners
 fetchSeeds().then(seeds => {
     renderSeedCards(seeds);
 
