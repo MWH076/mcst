@@ -4,7 +4,7 @@ const filtersOffcanvas = document.querySelectorAll(".form-check-input");
 let seedsData = [];
 
 // Fetch seeds.json and initialize
-fetch('MWH076/mcst/Data/seeds.json')
+fetch('Data/seeds.json')
     .then(response => response.json())
     .then(data => {
         seedsData = [data]; // Assuming seeds.json is an array of seed objects
