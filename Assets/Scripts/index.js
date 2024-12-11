@@ -11,9 +11,9 @@ function renderSeedCards(seeds) {
         card.classList.add('col-md-4');
         card.innerHTML = `
             <div class="card" style="border-radius: 10px; overflow: hidden;">
-                <img src="${seed.imgs[0].path}" class="card-img-top" alt="${seed.imgs[0].name}">
+                <img src="${seed.imgs[1].path}" class="card-img-top" alt="${seed.imgs[1].name}">
                 <div class="d-flex align-items-center p-3">
-                    <img src="https://via.placeholder.com/50" class="rounded me-3" alt="Profile Image">
+                    <img src="${seed.imgs[0].path}" class="rounded me-3" alt="${seed.imgs[0].name}">
                     <div class="d-flex justify-content-between align-items-center w-100">
                         <div>
                             <h6 class="mb-0">${seed.name}</h6>
