@@ -1,10 +1,8 @@
-// Fetch seeds data
 async function fetchSeeds() {
     const response = await fetch('Data/seeds.json');
     return await response.json();
 }
 
-// Render seed cards
 function renderSeedCards(seeds) {
     const container = document.querySelector('.row.g-3');
     container.innerHTML = '';
@@ -32,12 +30,10 @@ function renderSeedCards(seeds) {
     });
 }
 
-// Search seeds by name
 function searchSeeds(seeds, query) {
     return seeds.filter(seed => seed.name.toLowerCase().includes(query.toLowerCase()));
 }
 
-// Filter seeds
 function filterSeeds(seeds) {
     const filters = {};
     document.querySelectorAll('.form-check-input:checked').forEach(input => {
@@ -64,7 +60,6 @@ function filterSeeds(seeds) {
     });
 }
 
-// View seed details
 function viewSeedDetails(seedName) {
     fetchSeeds().then(seeds => {
         const seed = seeds.find(s => s.name === seedName);
@@ -92,7 +87,6 @@ function viewSeedDetails(seedName) {
     });
 }
 
-// Event listeners
 fetchSeeds().then(seeds => {
     renderSeedCards(seeds);
 
