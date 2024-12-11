@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="Assets/Styles/index.css">
+</head>
+<body>
+    <div class="container-fluid mt-3">
+        <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Search" id="search">
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-outline-success w-100 mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#filters">
+                Filters
+            </button>
+            <div class="offcanvas offcanvas-start offcanvas-fullscreen" tabindex="-1" id="filters">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title">Filters</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="accordion" id="filterAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#spawnbiome">Spawn Biome</button>
+                            </h2>
+                            <div id="spawnbiome" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                                <div class="accordion-body">
+                                    <div class="form-check" data-bs-toggle="tooltip" title="A relatively flat area.">
+                                        <input class="form-check-input" type="checkbox" value="Plains">
+                                        <label class="form-check-label">Plains</label>
+                                    </div>
+                                    <div class="form-check" data-bs-toggle="tooltip" title="Snowy Plains for a cold start.">
+                                        <input class="form-check-input" type="checkbox" value="Snowy Plains">
+                                        <label class="form-check-label">Snowy Plains</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#version">Version</button>
+                            </h2>
+                            <div id="version" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                                <div class="accordion-body">
+                                    <div class="form-check" data-bs-toggle="tooltip" title="Latest version.">
+                                        <input class="form-check-input" type="checkbox" value="1.20">
+                                        <label class="form-check-label">1.20</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1.19">
+                                        <label class="form-check-label">1.19</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1.18">
+                                        <label class="form-check-label">1.18</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#edition">Edition</button>
+                            </h2>
+                            <div id="edition" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Java">
+                                        <label class="form-check-label">Java</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Bedrock">
+                                        <label class="form-check-label">Bedrock</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Console">
+                                        <label class="form-check-label">Console</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Pocket">
+                                        <label class="form-check-label">Pocket</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#exposedstructures">Exposed Surrounding Structures</button>
+                            </h2>
+                            <div id="exposedstructures" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Village">
+                                        <label class="form-check-label">Village</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Mineshaft">
+                                        <label class="form-check-label">Mineshaft</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Desert Temple">
+                                        <label class="form-check-label">Desert Temple</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Woodland Mansion">
+                                        <label class="form-check-label">Woodland Mansion</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Ocean Monument">
+                                        <label class="form-check-label">Ocean Monument</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Ruined Portal">
+                                        <label class="form-check-label">Ruined Portal</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hiddenstructures">Hidden Surrounding Structures</button>
+                            </h2>
+                            <div id="hiddenstructures" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Stronghold">
+                                        <label class="form-check-label">Stronghold</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Mineshaft">
+                                        <label class="form-check-label">Mineshaft</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surroundingbiomes">Surrounding Biomes</button>
+                            </h2>
+                            <div id="surroundingbiomes" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Plains">
+                                        <label class="form-check-label">Plains</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Taiga">
+                                        <label class="form-check-label">Taiga</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bestsuitedfor">Best Suited For</button>
+                            </h2>
+                            <div id="bestsuitedfor" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Survival Friendly">
+                                        <label class="form-check-label">Survival Friendly</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Creative Build Potential">
+                                        <label class="form-check-label">Creative Build Potential</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Scenic Photography & Cinematic Shots">
+                                        <label class="form-check-label">Scenic Photography & Cinematic Shots</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3" id="cards-container"></div>
+        <div class="offcanvas offcanvas-start offcanvas-fullscreen" tabindex="-1" id="details">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="seed_name"></h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <p>Description: <span id="seed_desc">N/A</span></p>
+                <p>Spawn Biome: <span id="seed_spnb">N/A</span></p>
+                <p>Spawn Location: <span id="seed_spnl">N/A</span></p>
+                <p>Version: <span id="seed_vers">N/A</span></p>
+                <p>Edition: <span id="seed_edtn">N/A</span></p>
+                <p>Best Suited For: <span id="seed_best">N/A</span></p>
+                <p>Surrounding Biomes: <span id="seed_surb">N/A</span></p>
+                <p>Hidden Surrounding Structures: <span id="seed_hstr">N/A</span></p>
+                <p>Exposed Surrounding Structures: <span id="seed_estr">N/A</span></p>
+                <div id="seed_imgs"></div>
+            </div>
+        </div>
+    </div>
+    <script src="Assets/Scripts/index.js"></script>
+</body>
+</html>

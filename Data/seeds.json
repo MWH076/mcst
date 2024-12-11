@@ -1,0 +1,57 @@
+[
+    {
+      "name": "Cherry Grove",
+      "desc": "A beautiful pink cherry grove.",
+      "imgs": [
+        { "path": "cherry1.jpg", "name": "Cherry Blossoms" },
+        { "path": "cherry2.jpg", "name": "Sunrise" }
+      ],
+      "data": {
+        "spnb": "Cherry Biome",
+        "spnl": "-240 100 -309",
+        "vers": "1.20",
+        "edtn": "Java",
+        "best": "Creative Build Potential",
+        "surb": ["Plains", "Taiga"],
+        "hstr": ["Stronghold"],
+        "estr": ["Village", "Ruined Portal"]
+      }
+    },
+    {
+      "name": "Birch Forest",
+      "desc": "A serene birch forest.",
+      "imgs": [
+        { "path": "birch1.jpg", "name": "Birch Trees" },
+        { "path": "birch2.jpg", "name": "Sunlit Pathway" }
+      ],
+      "data": {
+        "spnb": "Birch Biome",
+        "spnl": "-150 75 -50",
+        "vers": "1.19",
+        "edtn": "Java",
+        "best": "Survival Friendly",
+        "surb": ["Forest", "Plains"],
+        "hstr": ["Mineshaft"],
+        "estr": ["Village"]
+      }
+    },
+    {
+      "name": "Snowy Plains",
+      "desc": "A frosty snowy plains biome.",
+      "imgs": [
+        { "path": "snowy1.jpg", "name": "Snowy Landscape" },
+        { "path": "snowy2.jpg", "name": "Icy River" }
+      ],
+      "data": {
+        "spnb": "Snowy Plains",
+        "spnl": "-100 90 50",
+        "vers": "1.18",
+        "edtn": "Java",
+        "best": "Scenic Photography & Cinematic Shots",
+        "surb": ["Snowy Taiga"],
+        "hstr": ["Stronghold", "Mineshaft"],
+        "estr": ["Village", "Desert Temple"]
+      }
+    }
+  ]
+  
