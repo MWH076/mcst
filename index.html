@@ -10,10 +10,12 @@
         <div class="mb-3">
             <input type="text" class="form-control" placeholder="Search" id="search">
         </div>
+    
         <div class="mb-3">
             <button class="btn btn-outline-success w-100 mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#filters">
                 Filters
             </button>
+    
             <div class="offcanvas offcanvas-start offcanvas-fullscreen" tabindex="-1" id="filters">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title">Filters</h5>
@@ -53,10 +55,6 @@
                                         <input class="form-check-input" type="checkbox" value="1.19">
                                         <label class="form-check-label">1.19</label>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="1.18">
-                                        <label class="form-check-label">1.18</label>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -75,14 +73,6 @@
                                         <input class="form-check-input" type="checkbox" value="Bedrock">
                                         <label class="form-check-label">Bedrock</label>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Console">
-                                        <label class="form-check-label">Console</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Pocket">
-                                        <label class="form-check-label">Pocket</label>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -100,22 +90,6 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="Mineshaft">
                                         <label class="form-check-label">Mineshaft</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Desert Temple">
-                                        <label class="form-check-label">Desert Temple</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Woodland Mansion">
-                                        <label class="form-check-label">Woodland Mansion</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Ocean Monument">
-                                        <label class="form-check-label">Ocean Monument</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Ruined Portal">
-                                        <label class="form-check-label">Ruined Portal</label>
                                     </div>
                                 </div>
                             </div>
@@ -181,24 +155,119 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row g-3" id="cards-container"></div>
-        <div class="offcanvas offcanvas-start offcanvas-fullscreen" tabindex="-1" id="details">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="seed_name"></h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+    
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="card" style="border-radius: 10px; overflow: hidden;">
+                        <img src="https://wisehosting.com/templates/wisehosting/assets/images/seeds/seed1.webp" class="card-img-top" alt="Banner Image">
+                        <div class="d-flex align-items-center p-3">
+                            <img src="https://via.placeholder.com/50" class="rounded me-3" alt="Profile Image">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <div>
+                                    <h6 class="mb-0">Cherry Grove</h6>
+                                    <small class="text-muted">1.20 Java</small>
+                                </div>
+                                <button class="btn btn-outline-success btn-sm ms-3" data-bs-toggle="offcanvas" data-bs-target="#details">
+                                    View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="border-radius: 10px; overflow: hidden;">
+                        <img src="https://wisehosting.com/templates/wisehosting/assets/images/seeds/seed1.webp" class="card-img-top" alt="Banner Image">
+                        <div class="d-flex align-items-center p-3">
+                            <img src="https://via.placeholder.com/50" class="rounded me-3" alt="Profile Image">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <div>
+                                    <h6 class="mb-0">Birch Forest</h6>
+                                    <small class="text-muted">1.20 Java</small>
+                                </div>
+                                <button class="btn btn-outline-success btn-sm ms-3" data-bs-toggle="offcanvas" data-bs-target="#details">
+                                    View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="offcanvas-body">
-                <p>Description: <span id="seed_desc">N/A</span></p>
-                <p>Spawn Biome: <span id="seed_spnb">N/A</span></p>
-                <p>Spawn Location: <span id="seed_spnl">N/A</span></p>
-                <p>Version: <span id="seed_vers">N/A</span></p>
-                <p>Edition: <span id="seed_edtn">N/A</span></p>
-                <p>Best Suited For: <span id="seed_best">N/A</span></p>
-                <p>Surrounding Biomes: <span id="seed_surb">N/A</span></p>
-                <p>Hidden Surrounding Structures: <span id="seed_hstr">N/A</span></p>
-                <p>Exposed Surrounding Structures: <span id="seed_estr">N/A</span></p>
-                <div id="seed_imgs"></div>
+    
+            <div class="offcanvas offcanvas-start offcanvas-fullscreen" tabindex="-1" id="details">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="seed_name"></h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <span id="seed_desc">N/A</span>
+    
+                    <div class="my-3 p-3 card rounded box-shadow">
+                        <h6 class="border-bottom border-gray pb-2 mb-0">Spawn Information</h6>
+                        <div class="text-muted pt-3">
+                            <p class="pb-3 small border-bottom border-gray">
+                                <strong class="d-block text-muted">Spawn Coordinate</strong>
+                                <span id="seed_spnc">N/A</span>
+                            </p>
+                        </div>
+                        <div class="text-muted">
+                            <p class="small border-gray">
+                                <strong class="d-block text-muted">Spawn Biome</strong>
+                                <span id="seed_spnb">N/A</span>
+                            </p>
+                        </div>
+                    </div>
+    
+                    <div class="my-3 p-3 card rounded box-shadow">
+                        <h6 class="border-bottom border-gray pb-2 mb-0">Game Information</h6>
+                        <div class="text-muted pt-3">
+                            <p class="pb-3 small border-bottom border-gray">
+                                <strong class="d-block text-muted">Edition</strong>
+                                <span id="seed_edtn">N/A</span>
+                            </p>
+                        </div>
+                        <div class="text-muted">
+                            <p class="small border-gray">
+                                <strong class="d-block text-muted">Version</strong>
+                                <span id="seed_vers">N/A</span>
+                            </p>
+                        </div>
+                    </div>
+    
+                    <div class="my-3 p-3 card rounded box-shadow">
+                        <h6 class="border-bottom border-gray pb-2 mb-0">Surroundings Information</h6>
+                        <div class="text-muted pt-3">
+                            <p class="pb-3 small border-bottom border-gray">
+                                <strong class="d-block text-muted">Surrounding Biomes</strong>
+                                <span id="seed_surb">N/A</span>
+                            </p>
+                        </div>
+                        <div class="text-muted">
+                            <p class="pb-3 small border-bottom border-gray">
+                                <strong class="d-block text-muted">Exposed Surrounding Structures</strong>
+                                <span id="seed_estr">N/A</span>
+                            </p>
+                        </div>
+                        <div class="text-muted">
+                            <p class="small border-gray">
+                                <strong class="d-block text-muted">Hidden Surrounding Structures</strong>
+                                <span id="seed_hstr">N/A</span>
+                            </p>
+                        </div>
+                    </div>
+    
+                    <div class="my-3 p-3 card rounded box-shadow">
+                        <h6 class="border-bottom border-gray pb-2 mb-0">Other Information</h6>
+                        <div class="text-muted">
+                            <p class="pt-3 small border-gray">
+                                <strong class="d-block text-muted">Best Suited For</strong>
+                                <span id="seed_best">N/A</span>
+                            </p>
+                        </div>
+                    </div>
+    
+                    <div id="seed_imgs">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

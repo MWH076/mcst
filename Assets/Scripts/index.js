@@ -1,79 +1,120 @@
-const searchInput = document.getElementById("search");
-const cardsContainer = document.getElementById("cards-container");
-const filtersOffcanvas = document.querySelectorAll(".form-check-input");
-let seedsData = [];
-
-// Fetch seeds.json and initialize
-fetch('Data/seeds.json')
-    .then(response => response.json())
-    .then(data => {
-        seedsData = [data]; // Assuming seeds.json is an array of seed objects
-        renderCards(seedsData);
-    });
-
-// Event: Search input
-searchInput.addEventListener("input", () => {
-    const searchTerm = searchInput.value.toLowerCase();
-    const filteredSeeds = seedsData.filter(seed => seed.name.toLowerCase().includes(searchTerm));
-    renderCards(filteredSeeds);
-});
-
-// Event: Filter changes
-filtersOffcanvas.forEach(filter => {
-    filter.addEventListener("change", applyFilters);
-});
-
-// Apply Filters
-function applyFilters() {
-    const selectedFilters = Array.from(filtersOffcanvas)
-        .filter(filter => filter.checked)
-        .map(filter => filter.value);
-
-    const filteredSeeds = seedsData.filter(seed => {
-        return selectedFilters.every(filter => {
-            return Object.values(seed.data).flat().includes(filter);
-        });
-    });
-
-    renderCards(filteredSeeds);
+// Fetch seeds data
+async function fetchSeeds() {
+    const response = await fetch('Data/seeds.json');
+    return await response.json();
 }
 
-// Render Cards
-function renderCards(seeds) {
-    cardsContainer.innerHTML = seeds.map(seed => `
-        <div class="col-md-4">
+// Render seed cards
+function renderSeedCards(seeds) {
+    const container = document.querySelector('.row.g-3');
+    container.innerHTML = '';
+    seeds.forEach(seed => {
+        const card = document.createElement('div');
+        card.classList.add('col-md-4');
+        card.innerHTML = `
             <div class="card" style="border-radius: 10px; overflow: hidden;">
-                <img src="assets/images/${seed.imgs[0].path}" class="card-img-top" alt="${seed.imgs[0].name}">
+                <img src="Assets/Images/${seed.imgs[0].path}" class="card-img-top" alt="${seed.imgs[0].name}">
                 <div class="d-flex align-items-center p-3">
-                    <div>
-                        <h6 class="mb-0">${seed.name}</h6>
-                        <small class="text-muted">${seed.data.vers} ${seed.data.edtn}</small>
+                    <img src="https://via.placeholder.com/50" class="rounded me-3" alt="Profile Image">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <div>
+                            <h6 class="mb-0">${seed.name}</h6>
+                            <small class="text-muted">${seed.data.vers} ${seed.data.edtn}</small>
+                        </div>
+                        <button class="btn btn-outline-success btn-sm ms-3" data-bs-toggle="offcanvas" data-bs-target="#details" onclick="viewSeedDetails('${seed.name}')">
+                            View
+                        </button>
                     </div>
-                    <button class="btn btn-outline-success btn-sm ms-3" onclick="showDetails(${JSON.stringify(seed).replace(/"/g, '&quot;')})">
-                        View
-                    </button>
                 </div>
             </div>
-        </div>
-    `).join("");
+        `;
+        container.appendChild(card);
+    });
 }
 
-// Show Details
-function showDetails(seed) {
-    document.getElementById("seed_name").textContent = seed.name;
-    document.getElementById("seed_desc").textContent = seed.desc;
-    document.getElementById("seed_spnb").textContent = seed.data.spnb || "N/A";
-    document.getElementById("seed_spnl").textContent = seed.data.spnl || "N/A";
-    document.getElementById("seed_vers").textContent = seed.data.vers || "N/A";
-    document.getElementById("seed_edtn").textContent = seed.data.edtn || "N/A";
-    document.getElementById("seed_best").textContent = seed.data.best || "N/A";
-    document.getElementById("seed_surb").textContent = (seed.data.surb || []).join(", ") || "N/A";
-    document.getElementById("seed_hstr").textContent = (seed.data.hstr || []).join(", ") || "N/A";
-    document.getElementById("seed_estr").textContent = (seed.data.estr || []).join(", ") || "N/A";
-    document.getElementById("seed_imgs").innerHTML = seed.imgs.map(img => `
-        <div>
-            <img src="assets/images/${img.path}" class="img-fluid" alt="${img.name}">
-            <p>${img.name}</p>
-        </div>
-    `).join("");
+// Search seeds by name
+function searchSeeds(seeds, query) {
+    return seeds.filter(seed => seed.name.toLowerCase().includes(query.toLowerCase()));
 }
+
+// Filter seeds
+function filterSeeds(seeds) {
+    const filters = {};
+    document.querySelectorAll('.form-check-input:checked').forEach(input => {
+        filters[input.value] = true;
+    });
+
+    return seeds.filter(seed => {
+        for (let key in filters) {
+            if (
+                !(
+                    seed.data.spnb === key ||
+                    seed.data.vers === key ||
+                    seed.data.edtn === key ||
+                    seed.data.surb.includes(key) ||
+                    seed.data.estr.includes(key) ||
+                    seed.data.hstr.includes(key) ||
+                    seed.data.best === key
+                )
+            ) {
+                return false;
+            }
+        }
+        return true;
+    });
+}
+
+// View seed details
+function viewSeedDetails(seedName) {
+    fetchSeeds().then(seeds => {
+        const seed = seeds.find(s => s.name === seedName);
+        document.getElementById('seed_name').innerText = seed.name;
+        document.getElementById('seed_desc').innerText = seed.desc;
+        document.getElementById('seed_spnc').innerText = seed.data.spnl;
+        document.getElementById('seed_spnb').innerText = seed.data.spnb;
+        document.getElementById('seed_edtn').innerText = seed.data.edtn;
+        document.getElementById('seed_vers').innerText = seed.data.vers;
+        document.getElementById('seed_surb').innerText = seed.data.surb.join(', ');
+        document.getElementById('seed_estr').innerText = seed.data.estr.join(', ');
+        document.getElementById('seed_hstr').innerText = seed.data.hstr.join(', ');
+        document.getElementById('seed_best').innerText = seed.data.best;
+
+        const imagesContainer = document.getElementById('seed_imgs');
+        imagesContainer.innerHTML = '';
+        seed.imgs.forEach(img => {
+            const imgElement = document.createElement('img');
+            imgElement.src = `Assets/Images/${img.path}`;
+            imgElement.alt = img.name;
+            imgElement.style = 'width: 100%; margin-top: 10px;';
+            imagesContainer.appendChild(imgElement);
+        });
+    });
+}
+
+// Event listeners
+fetchSeeds().then(seeds => {
+    renderSeedCards(seeds);
+
+    document.getElementById('search').addEventListener('input', event => {
+        const query = event.target.value;
+        const filteredSeeds = searchSeeds(seeds, query);
+        renderSeedCards(filteredSeeds);
+    });
+
+    document.querySelectorAll('.form-check-input').forEach(input => {
+        input.addEventListener('change', () => {
+            const filteredSeeds = filterSeeds(seeds);
+            renderSeedCards(filteredSeeds);
+        });
+    });
+});
+
+
+
+
+
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+});
